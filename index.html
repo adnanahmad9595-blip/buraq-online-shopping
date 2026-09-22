@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buraq IT Services — Product Catalog</title>
+<title>Buraq Online Shopping — Product Catalog</title>
 <meta name="description" content="Networking gear, cables, power backup and computer accessories from Buraq IT Services. Order directly on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -84,6 +84,7 @@
 
   .empty-state{ text-align:center; padding:60px 20px; color:var(--muted); }
   .empty-state h3{color:var(--text);margin-bottom:6px;font-size:16px;}
+  .load-error{ text-align:center; padding:60px 20px; color:var(--muted); }
 
   footer{ border-top:1px solid var(--line); padding:26px 20px; text-align:center; color:var(--muted); font-size:12.5px; background:var(--surface); }
 
@@ -141,37 +142,24 @@
 
 <script>
 /* ============================================================
-   EDIT YOUR PRODUCTS HERE.
-   Each product needs: id, slug, name, category, price (number, PKR),
-   description, image (a URL — leave "" to show a placeholder),
-   video (a URL — leave "" to hide the link).
-
-   To add a category, just use a new "category" name below —
-   it will appear automatically in the filter bar.
+   PRODUCTS NOW LIVE IN products.json (same folder as this file),
+   NOT in this script. Edit that one file to add/change/remove
+   a product, including its image — this page and every
+   products/*.html page both read from it automatically, so you
+   only ever enter a product's details in ONE place.
    ============================================================ */
-const PRODUCTS = [
-  { id: 1, slug: "mikrotik-hap-ax2-wireless-router", name: "MikroTik hAP ax2 Wireless Router", category: "Networking Gear", price: 24500, description: "Dual-band Wi-Fi 6 router with 5 Gigabit ports, ideal for office and home networks needing VPN and firewall control.", image: "", video: "" },
-  { id: 2, slug: "tp-link-24-port-gigabit-switch", name: "TP-Link 24-Port Gigabit Switch", category: "Networking Gear", price: 18900, description: "Unmanaged 24-port switch for expanding wired connections across an office floor.", image: "", video: "" },
-  { id: 3, slug: "ubiquiti-powerbeam-5ac-gen2", name: "Ubiquiti PowerBeam 5AC Gen2", category: "Networking Gear", price: 32000, description: "Point-to-point wireless bridge for long-range outdoor links between buildings.", image: "", video: "" },
-  { id: 4, slug: "hdmi-cable-3-meter", name: "HDMI Cable — 3 meter", category: "Cables & Adapters", price: 650, description: "High-speed HDMI cable, supports 4K, gold-plated connectors.", image: "", video: "" },
-  { id: 5, slug: "cat6-ethernet-cable-5-meter", name: "Cat6 Ethernet Cable — 5 meter", category: "Cables & Adapters", price: 850, description: "Solid-copper Cat6 patch cable for stable gigabit wired connections.", image: "", video: "" },
-  { id: 6, slug: "usb-c-to-hdmi-adapter", name: "USB-C to HDMI Adapter", category: "Cables & Adapters", price: 1400, description: "Connect a laptop to a monitor or projector, supports up to 4K@30Hz.", image: "", video: "" },
-  { id: 7, slug: "1000va-line-interactive-ups", name: "1000VA Line-Interactive UPS", category: "Power Backup", price: 15500, description: "Backup power for a desktop workstation or small server, roughly 15-20 minutes runtime at typical office load.", image: "", video: "" },
-  { id: 8, slug: "surge-protector-6-outlet", name: "Surge Protector — 6 outlet", category: "Power Backup", price: 2200, description: "Protects networking and computer equipment from voltage spikes.", image: "", video: "" },
-  { id: 9, slug: "wireless-keyboard-mouse-combo", name: "Wireless Keyboard & Mouse Combo", category: "Computer Accessories", price: 2800, description: "2.4GHz wireless combo, quiet keys, one USB receiver for both devices.", image: "", video: "" },
-  { id: 10, slug: "1tb-external-hard-drive", name: "1TB External Hard Drive", category: "Computer Accessories", price: 9800, description: "USB 3.0 portable drive for backups and file transfer.", image: "", video: "" }
-];
 
 const WHATSAPP_NUMBER = "923000118219";
 const WHATSAPP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.22 8.22 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24a8.2 8.2 0 0 1 8.24 8.24c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.15 0-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>';
+
+let PRODUCTS = [];
+let activeCategory = "All";
 
 const grid = document.getElementById('productGrid');
 const categoryBar = document.getElementById('categoryBar');
 const searchInput = document.getElementById('searchInput');
 const emptyState = document.getElementById('emptyState');
 const resultsCount = document.getElementById('resultsCount');
-
-let activeCategory = "All";
 
 function formatPrice(n){ return n.toLocaleString('en-PK'); }
 
@@ -228,8 +216,20 @@ function render(){
 }
 
 searchInput.addEventListener('input', render);
-buildCategoryBar();
-render();
+
+fetch('products.json')
+  .then(res => res.json())
+  .then(data => {
+    PRODUCTS = data;
+    buildCategoryBar();
+    render();
+  })
+  .catch(err => {
+    grid.innerHTML = '<p style="color:#6b7280;">Could not load products.json — make sure it is uploaded in the same folder as this page.</p>';
+    emptyState.style.display = 'none';
+    resultsCount.textContent = '';
+    console.error('Failed to load products.json', err);
+  });
 </script>
 
 </body>

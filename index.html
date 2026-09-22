@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Buraq online shopping — Product Catalog</title>
-<meta name="description" content="Networking gear, cables, power backup and computer accessories from براق ان لائن شاپنگ. Order directly on WhatsApp.">
+<title>براق ان لائن شاپنگ — Product Catalog</title>
+<meta name="description" content="Networking gear, cables, power backup and computer accessories. Order directly on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -188,7 +188,6 @@
     justify-content:center;
     color:var(--muted);
     font-size:13px;
-    position:relative;
   }
   .card-media img{width:100%;height:100%;object-fit:cover;}
   .card-body{
@@ -209,6 +208,7 @@
     font-weight:600;
     line-height:1.35;
     color:var(--text);
+    text-decoration:none;
   }
   .card-title:hover{color:var(--accent);}
   .card-desc{
@@ -233,15 +233,6 @@
     display:flex;
     gap:8px;
   }
-  .video-link{
-    font-size:12.5px;
-    color:var(--muted);
-    text-decoration:none;
-    border:1px solid var(--line);
-    padding:7px 10px;
-    border-radius:7px;
-  }
-  .video-link:hover{color:var(--text);border-color:var(--muted);}
   .order-btn{
     background:#2ea36c;
     color:#08150f;
@@ -285,7 +276,7 @@
       <div class="brand-mark">B</div>
       <div>
         <div class="brand-name">براق ان لائن شاپنگ</div>
-        <div class="brand-sub">Networking &amp; hardware, sourced and ready to ship</div>
+        <div class="brand-sub">Networking & hardware, sourced and ready to ship</div>
       </div>
     </div>
     <a class="contact-btn" href="https://wa.me/923000118219?text=Hi%2C%20I%20have%20a%20question%20about%20a%20product" target="_blank" rel="noopener">Message on WhatsApp</a>
@@ -425,90 +416,90 @@ const PRODUCTS = [
 const WHATSAPP_NUMBER = "923000118219";
 const SITE_URL = "https://adnanahmad9595-blip.github.io/buraq-online-shopping";
 
-const grid = document.getElementById('productGrid');
-const categoryBar = document.getElementById('categoryBar');
-const searchInput = document.getElementById('searchInput');
-const emptyState = document.getElementById('emptyState');
-const resultsCount = document.getElementById('resultsCount');
+const grid = document.getElementById("productGrid");
+const categoryBar = document.getElementById("categoryBar");
+const searchInput = document.getElementById("searchInput");
+const emptyState = document.getElementById("emptyState");
+const resultsCount = document.getElementById("resultsCount");
 
 let activeCategory = "All";
 
-function formatPrice(n){
-  return "PKR " + n.toLocaleString('en-PK');
+function formatPrice(n) {
+  return "PKR " + n.toLocaleString("en-PK");
 }
 
-function buildCategoryBar(){
-  const cats = ["All", ...new Set(PRODUCTS.map(p => p.category))];
-  categoryBar.innerHTML = cats.map(c =>
-    `<button class="cat-btn\( {c===activeCategory?' active':''}" data-cat=" \){c}">${c}</button>`
-  ).join('');
-  categoryBar.querySelectorAll('.cat-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeCategory = btn.dataset.cat;
+function buildCategoryBar() {
+  const cats = ["All"].concat(Array.from(new Set(PRODUCTS.map(function(p) { return p.category; }))));
+  categoryBar.innerHTML = cats.map(function(c) {
+    return '<button class="cat-btn' + (c === activeCategory ? ' active' : '') + '" data-cat="' + c + '">' + c + '</button>';
+  }).join("");
+
+  var buttons = categoryBar.querySelectorAll(".cat-btn");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+      activeCategory = this.getAttribute("data-cat");
       buildCategoryBar();
       render();
     });
-  });
+  }
 }
 
-function productCard(p){
-  const productUrl = `\( {SITE_URL}/products/ \){p.slug}.html`;
+function productCard(p) {
+  var productUrl = SITE_URL + "/products/" + p.slug + ".html";
 
-  const lines = [
-    `Hi, I'm interested in: ${p.name}`,
-    `Price: ${formatPrice(p.price)}`,
-    `Product ID: #${p.id}`,
-    `Product Link: ${productUrl}`
+  var lines = [
+    "Hi, I'm interested in: " + p.name,
+    "Price: " + formatPrice(p.price),
+    "Product ID: #" + p.id,
+    "Product Link: " + productUrl
   ];
+
   if (p.image) {
-    lines.push(`Photo: ${p.image}`);
+    lines.push("Photo: " + p.image);
   }
 
-  const waText = encodeURIComponent(lines.join('\n'));
-  const mediaContent = p.image
-    ? `<img src="\( {p.image}" alt=" \){p.name}">`
-    : `<span>No image yet</span>`;
-  const videoLink = p.video
-    ? `<a class="video-link" href="${p.video}" target="_blank" rel="noopener">Watch video</a>`
-    : '';
+  var waText = encodeURIComponent(lines.join("\n"));
+  var mediaContent = p.image
+    ? '<img src="' + p.image + '" alt="' + p.name + '">'
+    : "<span>No image yet</span>";
 
-  return `
-  <div class="card">
-    <div class="card-media">${mediaContent}</div>
-    <div class="card-body">
-      <div class="card-cat">${p.category}</div>
-      <a class="card-title" href="products/\( {p.slug}.html" style="text-decoration:none;"> \){p.name}</a>
-      <div class="card-desc">${p.description}</div>
-      <div class="card-footer">
-        <div class="card-price">${formatPrice(p.price)}</div>
-      </div>
-      <div class="card-links">
-        <a class="order-btn" href="https://wa.me/\( {WHATSAPP_NUMBER}?text= \){waText}" target="_blank" rel="noopener">Order on WhatsApp</a>
-        ${videoLink}
-      </div>
-    </div>
-  </div>`;
+  return (
+    '<div class="card">' +
+      '<div class="card-media">' + mediaContent + '</div>' +
+      '<div class="card-body">' +
+        '<div class="card-cat">' + p.category + '</div>' +
+        '<a class="card-title" href="products/' + p.slug + '.html">' + p.name + '</a>' +
+        '<div class="card-desc">' + p.description + '</div>' +
+        '<div class="card-footer">' +
+          '<div class="card-price">' + formatPrice(p.price) + '</div>' +
+        '</div>' +
+        '<div class="card-links">' +
+          '<a class="order-btn" href="https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waText + '" target="_blank" rel="noopener">Order on WhatsApp</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  );
 }
 
-function render(){
-  const term = searchInput.value.trim().toLowerCase();
-  const filtered = PRODUCTS.filter(p => {
-    const matchesCat = activeCategory === "All" || p.category === activeCategory;
-    const matchesTerm = !term ||
-      p.name.toLowerCase().includes(term) ||
-      p.description.toLowerCase().includes(term) ||
-      p.category.toLowerCase().includes(term);
+function render() {
+  var term = searchInput.value.trim().toLowerCase();
+  var filtered = PRODUCTS.filter(function(p) {
+    var matchesCat = activeCategory === "All" || p.category === activeCategory;
+    var matchesTerm = !term ||
+      p.name.toLowerCase().indexOf(term) !== -1 ||
+      p.description.toLowerCase().indexOf(term) !== -1 ||
+      p.category.toLowerCase().indexOf(term) !== -1;
     return matchesCat && matchesTerm;
   });
 
-  grid.innerHTML = filtered.map(productCard).join('');
-  emptyState.style.display = filtered.length ? 'none' : 'block';
+  grid.innerHTML = filtered.map(productCard).join("");
+  emptyState.style.display = filtered.length ? "none" : "block";
   resultsCount.textContent = filtered.length
-    ? `\( {filtered.length} product \){filtered.length === 1 ? '' : 's'}`
-    : '';
+    ? filtered.length + " product" + (filtered.length === 1 ? "" : "s")
+    : "";
 }
 
-searchInput.addEventListener('input', render);
+searchInput.addEventListener("input", render);
 buildCategoryBar();
 render();
 </script>

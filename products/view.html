@@ -1,49 +1,20 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product — Buraq IT Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--h:#0f172a;--bg:#f1f5f9;--card:#fff;--line:#e2e8f0;--text:#0f172a;--muted:#64748b;--accent:#f97316;--price:#dc2626;--wa:#25d366}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
-header{background:linear-gradient(135deg,#0f172a,#1e293b);position:sticky;top:0;z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.15)}
-.h-in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.h-in a{color:#cbd5e1;border:1px solid #334155;padding:7px 14px;border-radius:10px;text-decoration:none;font-size:13px;transition:.2s}.h-in a:hover{background:#fff;color:#0f172a}
-main{max-width:1100px;margin:0 auto;padding:24px 20px 100px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
-@media(max-width:800px){main{grid-template-columns:1fr}}
-.gallery{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;position:sticky;top:80px}
-.main-img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border-radius:12px;transition:.3s}
-.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
-.thumbs img{aspect-ratio:1/1;object-fit:cover;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:#fff;padding:4px;transition:.2s}
-.thumbs img:hover{transform:translateY(-2px);border-color:var(--accent)}.thumbs img.active{border:2px solid var(--accent);box-shadow:0 4px 12px rgba(249,115,22,.2)}
-.info{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-.cat{font-size:11px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.6px}
-h1{font-family:Poppins;font-size:26px;line-height:1.25;margin:6px 0 8px}
-.price{font-size:28px;font-weight:800;color:var(--price)}.old{color:#94a3b8;text-decoration:line-through;margin-left:8px;font-size:15px}
-.highlights{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px 16px;margin:16px 0}
-.highlights li{margin:6px 0;font-size:14px;color:#431407}
-.desc{color:var(--muted);line-height:1.7;font-size:14.5px}
-.btns{display:flex;gap:10px;margin-top:18px}
-.btn-wa{flex:1;background:var(--wa);color:#fff;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 20px rgba(37,211,102,.3);transition:.2s}
-.btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.4)}
-.float-wa{position:fixed;bottom:22px;right:22px;background:var(--wa);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-</style></head><body>
-<header><div class="h-in"><div style="color:#fff;font-family:Poppins;font-weight:600">Buraq IT Services</div><a href="../index.html">← All Products</a></div></header>
-<main id="root">Loading...</main>
-<a class="float-wa" id="floatWa" href="#" target="_blank"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.52 12.99c-.25.12-1.47.72-1.7.81-.23.08-.39.12-.56-.13-.17-.25-.64-.81-.78-.97-.14-.17-.29-.19-.53-.06-.25.12-1.05.39-2 1.23-.74.66-1.24 1.48-1.39 1.73-.14.25-.02.38.11.51.11.11.25.29.37.43.12.14.16.25.24.41.08.17.04.31-.02.43-.06.12-.56 1.35-.77 1.85-.2.48-.41.42-.56.43h-.48a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Buraq IT</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;font-family:Inter,sans-serif;background:#f1f5f9}header{background:#0f172a;padding:14px 20px;display:flex;justify-content:space-between}.h{color:#fff;font-weight:600}header a{color:#cbd5e1;border:1px solid #334155;padding:6px 12px;border-radius:8px;text-decoration:none}main{max-width:1100px;margin:20px auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:800px){main{grid-template-columns:1fr}}.box{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px}.main-img{width:100%;aspect-ratio:4/3;object-fit:contain}.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.thumbs img{border:1px solid #e2e8f0;border-radius:8px;cursor:pointer;padding:3px;aspect-ratio:1/1;object-fit:cover}.thumbs img.active{border:2px solid #f97316}.price{font-size:26px;font-weight:800;color:#dc2626}.btn{background:#25d366;color:#fff;padding:14px;border-radius:12px;text-decoration:none;display:inline-flex;font-weight:700;margin-top:12px}</style>
+</head><body><header><div class="h">Buraq IT Services</div><a href="../index.html">← All</a></header><main id="root">Loading product... If stuck, check products.json path</main>
 <script>
-const slug=new URLSearchParams(location.search).get('slug'); const WA="923000118219";
-fetch('../products.json').then(r=>r.json()).then(data=>{
- const p=data.find(x=>x.slug===slug); if(!p){document.getElementById('root').innerHTML='<p>Product not found</p>';return;}
- document.title=p.name+' — Buraq IT'; const imgs=p.images && p.images.length ? p.images : (p.image?[p.image]:[]);
- const waText=encodeURIComponent(`Hi Buraq IT, I want to order:\n${p.name}\nPrice: Rs ${p.price.toLocaleString('en-PK')}\nLink: ${location.href}`);
- document.getElementById('floatWa').href=`https://wa.me/${WA}?text=${waText}`;
- document.getElementById('root').innerHTML=`
-  <div class="gallery"><img id="main" class="main-img" src="${imgs[0]||''}"><div class="thumbs">${imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('main').src='${im}';document.querySelectorAll('.thumbs img').forEach(e=>e.classList.remove('active'));this.classList.add('active')">`).join('')}</div></div>
-  <div class="info"><div class="cat">${p.category}</div><h1>${p.name}</h1><div style="color:#475569;font-size:14px">${p.headline||''}</div><div style="margin:14px 0"><span class="price">Rs ${p.price.toLocaleString('en-PK')}</span>${p.oldPrice?`<span class="old">Rs ${p.oldPrice.toLocaleString('en-PK')}</span>`:''}</div>
-  ${p.highlights?`<div class="highlights"><b style="font-size:13px">Highlights:</b><ul style="margin:8px 0 0 18px;padding:0">${(Array.isArray(p.highlights)?p.highlights:[p.highlights]).map(h=>`<li>${h}</li>`).join('')}</ul></div>`:''}
-  <h3 style="font-family:Poppins;font-size:15px;margin:18px 0 8px;border-left:4px solid #f97316;padding-left:10px">Description</h3><div class="desc">${p.description}</div>
-  <div class="btns"><a class="btn-wa" href="https://wa.me/${WA}?text=${waText}" target="_blank">Order on WhatsApp - Rs ${p.price.toLocaleString('en-PK')}</a></div>
-  <div style="margin-top:14px;font-size:12px;color:#64748b">✓ 2 Year Warranty • ✓ Cash on Delivery • ✓ Confirm on WhatsApp</div></div>`;
-});
+const slug = new URLSearchParams(location.search).get('slug');
+console.log('SLUG:', slug);
+fetch('../products.json')
+  .then(r => { if(!r.ok) throw new Error('products.json not found at ../products.json - Status '+r.status); return r.json(); })
+  .then(data => {
+    const p = data.find(x => x.slug === slug);
+    if(!p){ document.getElementById('root').innerHTML = `<div class="box"><h2>Product not found: ${slug}</h2><p>Check products.json has slug "${slug}"</p><p>Available: ${data.map(d=>d.slug).join(', ')}</p></div>`; return; }
+    const imgs = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
+    document.getElementById('root').innerHTML = `<div class="box"><img id="m" class="main-img" src="${imgs[0]||''}"><div class="thumbs">${imgs.map((im,i)=>`<img src="../${im.replace('../','').replace('images/','../images/')}" class="${i==0?'active':''}" onclick="document.getElementById('m').src=this.src;this.parentNode.querySelectorAll('img').forEach(e=>e.classList.remove('active'));this.classList.add('active')">`).join('')}</div></div><div class="box"><div style="color:#059669;font-size:11px;font-weight:700;text-transform:uppercase">${p.category}</div><h1 style="font-family:Poppins">${p.name}</h1><div class="price">Rs ${p.price.toLocaleString('en-PK')}</div><p>${p.description}</p><a class="btn" href="https://wa.me/923000118219?text=${encodeURIComponent('I want '+p.name)}" target="_blank">Order on WhatsApp</a></div>`;
+  })
+  .catch(err => {
+    document.getElementById('root').innerHTML = `<div class="box" style="grid-column:1/-1;color:red"><h3>Error Loading: ${err.message}</h3><p>1. Check products.json is in root folder (same as index.html)<br>2. Check products.json has valid JSON - no extra comma<br>3. Check images folder exists<br>Open Console (F12) to see details</p></div>`;
+    console.error(err);
+  });
 </script></body></html>

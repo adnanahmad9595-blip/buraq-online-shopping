@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buraq IT Services — Product Catalog</title>
+<meta name="description" content="Networking gear, cables, power backup and computer accessories from Buraq IT Services. Order directly on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12181b;
+    --surface:#1b2328;
+    --surface-2:#212b31;
+    --line:#2b363c;
+    --text:#edefef;
+    --muted:#8b9aa0;
+    --accent:#d98e4a;
+    --accent-dim:#a86b38;
+    --teal:#4a9b8e;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* Header */
+  header.site{
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    background:rgba(18,24,27,0.92);
+    backdrop-filter:blur(8px);
+    z-index:50;
+  }
+  .header-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    width:34px;height:34px;
+    border-radius:8px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    color:#12181b;
+    font-size:16px;
+    flex-shrink:0;
+  }
+  .brand-name{font-size:18px;font-weight:600;}
+  .brand-sub{font-size:12px;color:var(--muted);}
+  .contact-btn{
+    background:var(--accent);
+    color:#1a1206;
+    padding:9px 16px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* Hero */
+  .hero{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 20px 32px;
+  }
+  .hero h1{
+    font-size:clamp(28px,4vw,42px);
+    max-width:640px;
+    font-weight:600;
+  }
+  .hero p{
+    color:var(--muted);
+    max-width:520px;
+    margin-top:14px;
+    font-size:16px;
+  }
+
+  /* Search + filter bar */
+  .toolbar{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px 28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+  }
+  .search-box{
+    flex:1 1 240px;
+    position:relative;
+  }
+  .search-box input{
+    width:100%;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:11px 14px 11px 38px;
+    border-radius:8px;
+    font-size:15px;
+    font-family:inherit;
+  }
+  .search-box input:focus{
+    outline:2px solid var(--accent);
+    outline-offset:-1px;
+  }
+  .search-box svg{
+    position:absolute;
+    left:12px;top:50%;
+    transform:translateY(-50%);
+    width:16px;height:16px;
+    stroke:var(--muted);
+  }
+  .categories{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .cat-btn{
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--muted);
+    padding:9px 14px;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .cat-btn.active{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:#0c1a17;
+    font-weight:600;
+  }
+
+  /* Product grid */
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px 80px;
+  }
+  .section-title{
+    font-size:15px;
+    color:var(--muted);
+    margin:36px 0 14px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .card-media{
+    aspect-ratio:4/3;
+    background:var(--surface-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    font-size:13px;
+    position:relative;
+  }
+  .card-media img{width:100%;height:100%;object-fit:cover;}
+  .card-body{
+    padding:14px 14px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1;
+  }
+  .card-cat{
+    font-size:11.5px;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .card-title{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    line-height:1.35;
+    color:var(--text);
+  }
+  .card-title:hover{color:var(--accent);}
+  .card-desc{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+    flex:1;
+  }
+  .card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:4px;
+  }
+  .card-price{
+    font-size:17px;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .card-links{
+    display:flex;
+    gap:8px;
+  }
+  .video-link{
+    font-size:12.5px;
+    color:var(--muted);
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:7px 10px;
+    border-radius:7px;
+  }
+  .video-link:hover{color:var(--text);border-color:var(--muted);}
+  .order-btn{
+    background:#2ea36c;
+    color:#08150f;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 12px;
+    border-radius:7px;
+    white-space:nowrap;
+    flex:1;
+    text-align:center;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+  }
+  .empty-state h3{color:var(--text);margin-bottom:6px;font-size:17px;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  @media (max-width:520px){
+    .hero{padding:40px 20px 24px;}
+    .header-inner{padding:14px 16px;}
+    .contact-btn{padding:8px 12px;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div>
+        <div class="brand-name">Buraq IT Services</div>
+        <div class="brand-sub">Networking &amp; hardware, sourced and ready to ship</div>
+      </div>
+    </div>
+    <a class="contact-btn" href="https://wa.me/923000118219?text=Hi%2C%20I%20have%20a%20question%20about%20a%20product" target="_blank" rel="noopener">Message on WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Browse the catalog, order on WhatsApp</h1>
+  <p>Every listing below is in stock and priced in PKR. Tap a product's WhatsApp button to confirm availability and arrange payment and delivery directly with us.</p>
+</section>
+
+<div class="toolbar">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search products, e.g. router, UPS, HDMI...">
+  </div>
+  <div class="categories" id="categoryBar"></div>
+</div>
+
+<main>
+  <div id="resultsCount" class="section-title"></div>
+  <div class="grid" id="productGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <h3>No products match</h3>
+    <p>Try a different search term or category.</p>
+  </div>
+</main>
+
+<footer>
+  Buraq IT Services · WhatsApp: +92 300 0118219 · Prices in PKR, subject to confirmation
+</footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR PRODUCTS HERE.
+   Each product needs: id, name, category, price (number, PKR),
+   description, image (a URL — leave "" to show a placeholder),
+   video (a URL — leave "" to hide the link).
+
+   To add a category, just use a new "category" name below —
+   it will appear automatically in the filter bar.
+   ============================================================ */
+const PRODUCTS = [
+  {
+    id: 1,
+    slug: "mikrotik-hap-ax2-wireless-router",
+    name: "MikroTik hAP ax2 Wireless Router",
+    category: "Networking Gear",
+    price: 24500,
+    description: "Dual-band Wi-Fi 6 router with 5 Gigabit ports, ideal for office and home networks needing VPN and firewall control.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 2,
+    slug: "tp-link-24-port-gigabit-switch",
+    name: "TP-Link 24-Port Gigabit Switch",
+    category: "Networking Gear",
+    price: 18900,
+    description: "Unmanaged 24-port switch for expanding wired connections across an office floor.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 3,
+    slug: "ubiquiti-powerbeam-5ac-gen2",
+    name: "Ubiquiti PowerBeam 5AC Gen2",
+    category: "Networking Gear",
+    price: 32000,
+    description: "Point-to-point wireless bridge for long-range outdoor links between buildings.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 4,
+    slug: "hdmi-cable-3-meter",
+    name: "HDMI Cable — 3 meter",
+    category: "Cables & Adapters",
+    price: 650,
+    description: "High-speed HDMI cable, supports 4K, gold-plated connectors.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 5,
+    slug: "cat6-ethernet-cable-5-meter",
+    name: "Cat6 Ethernet Cable — 5 meter",
+    category: "Cables & Adapters",
+    price: 850,
+    description: "Solid-copper Cat6 patch cable for stable gigabit wired connections.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 6,
+    slug: "usb-c-to-hdmi-adapter",
+    name: "USB-C to HDMI Adapter",
+    category: "Cables & Adapters",
+    price: 1400,
+    description: "Connect a laptop to a monitor or projector, supports up to 4K@30Hz.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 7,
+    slug: "1000va-line-interactive-ups",
+    name: "1000VA Line-Interactive UPS",
+    category: "Power Backup",
+    price: 15500,
+    description: "Backup power for a desktop workstation or small server, roughly 15-20 minutes runtime at typical office load.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 8,
+    slug: "surge-protector-6-outlet",
+    name: "Surge Protector — 6 outlet",
+    category: "Power Backup",
+    price: 2200,
+    description: "Protects networking and computer equipment from voltage spikes.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 9,
+    slug: "wireless-keyboard-mouse-combo",
+    name: "Wireless Keyboard & Mouse Combo",
+    category: "Computer Accessories",
+    price: 2800,
+    description: "2.4GHz wireless combo, quiet keys, one USB receiver for both devices.",
+    image: "",
+    video: ""
+  },
+  {
+    id: 10,
+    slug: "1tb-external-hard-drive",
+    name: "1TB External Hard Drive",
+    category: "Computer Accessories",
+    price: 9800,
+    description: "USB 3.0 portable drive for backups and file transfer.",
+    image: "",
+    video: ""
+  }
+];
+
+const WHATSAPP_NUMBER = "923000118219";
+
+const grid = document.getElementById('productGrid');
+const categoryBar = document.getElementById('categoryBar');
+const searchInput = document.getElementById('searchInput');
+const emptyState = document.getElementById('emptyState');
+const resultsCount = document.getElementById('resultsCount');
+
+let activeCategory = "All";
+
+function formatPrice(n){
+  return "PKR " + n.toLocaleString('en-PK');
+}
+
+function buildCategoryBar(){
+  const cats = ["All", ...new Set(PRODUCTS.map(p => p.category))];
+  categoryBar.innerHTML = cats.map(c =>
+    `<button class="cat-btn${c===activeCategory?' active':''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  categoryBar.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      buildCategoryBar();
+      render();
+    });
+  });
+}
+
+function productCard(p){
+  const lines = [
+    `Hi, I'm interested in: ${p.name}`,
+    `Price: ${formatPrice(p.price)}`,
+    `Product ID: #${p.id}`
+  ];
+  if (p.image) {
+    lines.push(`Photo: ${p.image}`);
+  }
+  const waText = encodeURIComponent(lines.join('\n'));
+  const mediaContent = p.image
+    ? `<img src="${p.image}" alt="${p.name}">`
+    : `<span>No image yet</span>`;
+  const videoLink = p.video
+    ? `<a class="video-link" href="${p.video}" target="_blank" rel="noopener">Watch video</a>`
+    : '';
+  return `
+  <div class="card">
+    <div class="card-media">${mediaContent}</div>
+    <div class="card-body">
+      <div class="card-cat">${p.category}</div>
+      <a class="card-title" href="products/${p.slug}.html" style="text-decoration:none;">${p.name}</a>
+      <div class="card-desc">${p.description}</div>
+      <div class="card-footer">
+        <div class="card-price">${formatPrice(p.price)}</div>
+      </div>
+      <div class="card-links">
+        <a class="order-btn" href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}" target="_blank" rel="noopener">Order on WhatsApp</a>
+        ${videoLink}
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const term = searchInput.value.trim().toLowerCase();
+  const filtered = PRODUCTS.filter(p => {
+    const matchesCat = activeCategory === "All" || p.category === activeCategory;
+    const matchesTerm = !term ||
+      p.name.toLowerCase().includes(term) ||
+      p.description.toLowerCase().includes(term) ||
+      p.category.toLowerCase().includes(term);
+    return matchesCat && matchesTerm;
+  });
+
+  grid.innerHTML = filtered.map(productCard).join('');
+  emptyState.style.display = filtered.length ? 'none' : 'block';
+  resultsCount.textContent = filtered.length
+    ? `${filtered.length} product${filtered.length === 1 ? '' : 's'}`
+    : '';
+}
+
+searchInput.addEventListener('input', render);
+buildCategoryBar();
+render();
+</script>
+
+</body>
+</html>

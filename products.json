@@ -91,4 +91,26 @@
   },
   {
     "id": 10,
-    "slug": "1tb-external-hard
+    "slug": "1tb-external-hard-drive",
+    "name": "1TB External Hard Drive",
+    "category": "Computer Accessories",
+    "price": 9800,
+    "description": "USB 3.0 portable drive for backups and file transfer.",
+    "image": "",
+    "images": []
+  },
+  {
+    "id": 11,
+    "slug": "h6c-2mp",
+    "name": "EZVIZ H6C 2MP Indoor Pan/Tilt Security Camera",
+    "category": "WiFi Camera",
+    "price": 5500,
+    "oldPrice": 6900,
+    "headline": "World's No.1 - 360° Panoramic View - 2 Year Warranty",
+    "description": "EZVIZ H6C 2MP best indoor camera for home, shop, office. Mobile se full control, 512GB SD card support, night vision, 2-way audio.",
+    "image": "images/ezviz-h6c-2mp-final.jpg",
+    "images": ["images/ezviz-h6c-2mp-final.jpg", "images/ezviz-h6c-2mp-final.jpg", "images/ezviz-h6c-2mp-final.jpg"],
+    "highlights": ["360° Panoramic View", "1080P Full HD", "Auto Tracking", "View From Anywhere", "Works with Hey Google & Alexa", "2 Year Warranty"],
+    "video": ""
+  }
+]

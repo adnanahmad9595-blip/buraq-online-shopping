@@ -5,8 +5,10 @@
     "name": "MikroTik hAP ax2 Wireless Router",
     "category": "Networking Gear",
     "price": 24500,
+    "headline": "Wi-Fi 6 Router with 5 Gigabit Ports",
+    "images": [],
     "description": "Dual-band Wi-Fi 6 router with 5 Gigabit ports, ideal for office and home networks needing VPN and firewall control.",
-    "image": "2203_lg.webp",
+    "highlights": ["Wi-Fi 6", "5 Gigabit Ports", "VPN & Firewall"],
     "video": ""
   },
   {
@@ -15,8 +17,10 @@
     "name": "TP-Link 24-Port Gigabit Switch",
     "category": "Networking Gear",
     "price": 18900,
+    "headline": "Unmanaged 24-Port Gigabit Switch",
+    "images": [],
     "description": "Unmanaged 24-port switch for expanding wired connections across an office floor.",
-    "image": "TL 24.jpg",
+    "highlights": ["24 Gigabit Ports", "Plug & Play"],
     "video": ""
   },
   {
@@ -25,8 +29,8 @@
     "name": "Ubiquiti PowerBeam 5AC Gen2",
     "category": "Networking Gear",
     "price": 32000,
+    "images": [],
     "description": "Point-to-point wireless bridge for long-range outdoor links between buildings.",
-    "image": "",
     "video": ""
   },
   {
@@ -35,8 +39,8 @@
     "name": "HDMI Cable — 3 meter",
     "category": "Cables & Adapters",
     "price": 650,
+    "images": [],
     "description": "High-speed HDMI cable, supports 4K, gold-plated connectors.",
-    "image": "",
     "video": ""
   },
   {
@@ -45,8 +49,8 @@
     "name": "Cat6 Ethernet Cable — 5 meter",
     "category": "Cables & Adapters",
     "price": 850,
+    "images": [],
     "description": "Solid-copper Cat6 patch cable for stable gigabit wired connections.",
-    "image": "",
     "video": ""
   },
   {
@@ -55,8 +59,8 @@
     "name": "USB-C to HDMI Adapter",
     "category": "Cables & Adapters",
     "price": 1400,
+    "images": [],
     "description": "Connect a laptop to a monitor or projector, supports up to 4K@30Hz.",
-    "image": "",
     "video": ""
   },
   {
@@ -65,8 +69,8 @@
     "name": "1000VA Line-Interactive UPS",
     "category": "Power Backup",
     "price": 15500,
+    "images": [],
     "description": "Backup power for a desktop workstation or small server, roughly 15-20 minutes runtime at typical office load.",
-    "image": "",
     "video": ""
   },
   {
@@ -75,8 +79,8 @@
     "name": "Surge Protector — 6 outlet",
     "category": "Power Backup",
     "price": 2200,
+    "images": [],
     "description": "Protects networking and computer equipment from voltage spikes.",
-    "image": "",
     "video": ""
   },
   {
@@ -85,8 +89,8 @@
     "name": "Wireless Keyboard & Mouse Combo",
     "category": "Computer Accessories",
     "price": 2800,
+    "images": [],
     "description": "2.4GHz wireless combo, quiet keys, one USB receiver for both devices.",
-    "image": "",
     "video": ""
   },
   {
@@ -95,8 +99,29 @@
     "name": "1TB External Hard Drive",
     "category": "Computer Accessories",
     "price": 9800,
+    "images": [],
     "description": "USB 3.0 portable drive for backups and file transfer.",
-    "image": "",
     "video": ""
-  }
-]
+  },
+  {
+    "id": 11,
+    "slug": "h6c-2mp",
+    "name": "EZVIZ H6C 2MP Indoor Pan/Tilt Security Camera",
+    "category": "WiFi Camera",
+    "price": 5500,
+    "oldPrice": 6900,
+    "headline": "World's No.1 Smart Home Camera - 360° Panoramic View - 2 Year Warranty",
+    "images": [
+      "images/ezviz-h6c-2mp-final.jpg",
+      "images/ezviz-h6c-2mp-final.jpg",
+      "images/ezviz-h6c-2mp-final.jpg"
+    ],
+    "highlights": [
+      "360° Panoramic View - Pan & Tilt from Mobile",
+      "1080P Full HD Resolution - Crystal Clear",
+      "Auto-Tracking - Insan ko khud follow karega",
+      "View From Anywhere - EZVIZ App se kahin se dekhein",
+      "Works with Hey Google & Amazon Alexa",
+      "2 Year Official Warranty - Authorized Dealer"
+    ],
+    "description": "EZVIZ H6C 2MP Pakistan ka No.1 indoor security camera hai. Ghar, shop, office ke

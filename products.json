@@ -7,7 +7,8 @@
     "price": 24500,
     "description": "Dual-band Wi-Fi 6 router with 5 Gigabit ports, ideal for office and home networks needing VPN and firewall control.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "price": 18900,
     "description": "Unmanaged 24-port switch for expanding wired connections across an office floor.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "price": 32000,
     "description": "Point-to-point wireless bridge for long-range outdoor links between buildings.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "price": 650,
     "description": "High-speed HDMI cable, supports 4K, gold-plated connectors.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "price": 850,
     "description": "Solid-copper Cat6 patch cable for stable gigabit wired connections.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "price": 1400,
     "description": "Connect a laptop to a monitor or projector, supports up to 4K@30Hz.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "price": 15500,
     "description": "Backup power for a desktop workstation or small server, roughly 15-20 minutes runtime at typical office load.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
     "price": 2200,
     "description": "Protects networking and computer equipment from voltage spikes.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "price": 2800,
     "description": "2.4GHz wireless combo, quiet keys, one USB receiver for both devices.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     "price": 9800,
     "description": "USB 3.0 portable drive for backups and file transfer.",
     "image": "",
-    "images": []
+    "images": [],
+    "video": ""
   },
   {
     "id": 11,
@@ -109,7 +119,7 @@
     "headline": "World's No.1 - 360° Panoramic View - 2 Year Warranty",
     "description": "EZVIZ H6C 2MP best indoor camera for home, shop, office. Mobile se full control, 512GB SD card support, night vision, 2-way audio.",
     "image": "images/ezviz-h6c-2mp-final.jpg",
-    "images": ["images/ezviz-h6c-2mp-final.jpg", "images/ezviz-h6c-2mp-final.jpg", "images/ezviz-h6c-2mp-final.jpg"],
+    "images": ["images/ezviz-h6c-2mp-final.jpg"],
     "highlights": ["360° Panoramic View", "1080P Full HD", "Auto Tracking", "View From Anywhere", "Works with Hey Google & Alexa", "2 Year Warranty"],
     "video": ""
   }

@@ -67,7 +67,7 @@
   .section-title{ font-size:13.5px; color:var(--muted); margin:0 0 14px; }
   .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 1px 2px rgba(20,24,31,0.04); }
-  .card-media{ aspect-ratio:4/3; background:#fafafa; display:flex; align-items:center; justify-content:center; color:#b6bac2; font-size:12.5px; border-bottom:1px solid var(--line); }
+  .card-media{ position:relative; aspect-ratio:4/3; background:#fafafa; display:flex; align-items:center; justify-content:center; color:#b6bac2; font-size:12.5px; border-bottom:1px solid var(--line); }
   .card-media img{width:100%;height:100%;object-fit:cover;}
   .card-body{ padding:13px 14px 16px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .card-cat{ font-size:11px; color:var(--badge); font-weight:600; text-transform:uppercase; letter-spacing:.02em; }
@@ -83,6 +83,10 @@
   .order-btn{ background:var(--whatsapp); color:#fff; text-decoration:none; font-size:13px; font-weight:600; padding:9px 12px; border-radius:6px; white-space:nowrap; flex:1; text-align:center; display:flex; align-items:center; justify-content:center; gap:6px; }
   .order-btn:hover{background:#1d9350;}
   .order-btn svg{width:14px;height:14px;flex-shrink:0;}
+
+  .card-badge{ position:absolute; top:8px; left:8px; background:#e11d1d; color:#fff; font-size:11px; font-weight:700; padding:3px 7px; border-radius:4px; }
+  .card-old-price{ font-size:12.5px; color:var(--muted); text-decoration:line-through; margin-left:4px; }
+  .card-headline{ font-size:11.5px; color:var(--accent-dark); font-weight:600; line-height:1.4; }
 
   .empty-state{ text-align:center; padding:60px 20px; color:var(--muted); }
   .empty-state h3{color:var(--text);margin-bottom:6px;font-size:16px;}
@@ -181,28 +185,34 @@ function buildCategoryBar(){
 }
 
 function productCard(p){
+  const cardImg = p.image || (p.images && p.images[0]) || "";
   const lines = [
     `Hi, I'm interested in: ${p.name}`,
     `Price: PKR ${formatPrice(p.price)}`,
     `Product ID: #${p.id}`
   ];
-  if (p.image) {
-    const absoluteImg = /^https?:\/\//i.test(p.image)
-      ? p.image
-      : (window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/') + p.image);
+  if (cardImg) {
+    const absoluteImg = /^https?:\/\//i.test(cardImg)
+      ? cardImg
+      : (window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/') + cardImg);
     lines.push(`Photo: ${absoluteImg}`);
   }
   const waText = encodeURIComponent(lines.join('\n'));
-  const mediaContent = p.image ? `<img src="${p.image}" alt="${p.name}">` : `<span>No image yet</span>`;
+  const mediaContent = cardImg ? `<img src="${cardImg}" alt="${p.name}">` : `<span>No image yet</span>`;
   const videoLink = p.video ? `<a class="video-link" href="${p.video}" target="_blank" rel="noopener">Watch video</a>` : '';
+  const discountPct = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+  const badge = discountPct ? `<div class="card-badge">-${discountPct}%</div>` : '';
+  const oldPriceHtml = p.oldPrice && p.oldPrice > p.price ? `<span class="card-old-price">Rs ${formatPrice(p.oldPrice)}</span>` : '';
+  const headlineHtml = p.headline ? `<div class="card-headline">${p.headline}</div>` : '';
   return `
   <div class="card">
-    <a href="products/product.html?slug=${p.slug}" class="card-media">${mediaContent}</a>
+    <a href="products/product.html?slug=${p.slug}" class="card-media">${badge}${mediaContent}</a>
     <div class="card-body">
       <div class="card-cat">${p.category}</div>
       <a class="card-title" href="products/product.html?slug=${p.slug}">${p.name}</a>
+      ${headlineHtml}
       <div class="card-desc">${p.description}</div>
-      <div class="card-footer"><div class="card-price">${formatPrice(p.price)}</div></div>
+      <div class="card-footer"><div class="card-price">${formatPrice(p.price)}</div>${oldPriceHtml}</div>
       <div class="card-links">
         <a class="order-btn" href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}" target="_blank" rel="noopener">${WHATSAPP_ICON} Order</a>
         ${videoLink}

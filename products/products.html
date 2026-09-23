@@ -35,4 +35,145 @@
   .product-media{aspect-ratio:4/3;background:#fafafa;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#b6bac2;margin-bottom:22px;}
   .product-media img{width:100%;height:100%;object-fit:cover;}
   .cat-label{font-size:11.5px;color:var(--badge);font-weight:600;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;}
+  h1.product-title{font-size:clamp(20px,4vw,27px);font-weight:600;margin-bottom:8px;}
+  .headline{font-size:14px;color:var(--accent-dark);font-weight:600;margin-bottom:14px;}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .price{font-size:26px;font-weight:700;color:var(--price);}
+  .old-price{font-size:16px;color:var(--muted);text-decoration:line-through;}
+  .discount-badge{background:#e11d1d;color:#fff;font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px;}
+  .gallery-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .gallery-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--line);cursor:pointer;}
+  .gallery-thumbs img.active{border-color:var(--accent);border-width:2px;}
+  .highlights{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:8px;}
+  .highlights li{font-size:14px;color:var(--text);display:flex;align-items:flex-start;gap:8px;}
+  .highlights li::before{content:"✓";color:var(--badge);font-weight:700;flex-shrink:0;}
+  .description{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:26px;max-width:60ch;}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+  .order-btn{background:var(--whatsapp);color:#fff;text-decoration:none;font-size:15px;font-weight:600;padding:13px 22px;border-radius:8px;display:flex;align-items:center;gap:8px;}
+  .order-btn:hover{background:#1d9350;}
+  .order-btn svg{width:17px;height:17px;flex-shrink:0;}
+  .video-link{font-size:14px;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:13px 20px;border-radius:8px;background:var(--surface);}
+  .video-link:hover{border-color:#c7cbd1;}
+  .catalog-link{display:inline-block;margin-top:6px;font-size:13.5px;color:var(--muted);text-decoration:none;}
+  .catalog-link:hover{color:var(--text);}
+  footer{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--muted);font-size:12.5px;background:var(--surface);}
+  .loading{color:var(--muted);font-size:14px;}
+</style>
+</head>
+<body>
 
+<header class="site">
+  <div class="header-inner">
+    <div class="brand"><div class="brand-mark">B</div>Buraq IT Services</div>
+    <a class="back-link" href="../index.html">&#8592; All products</a>
+  </div>
+</header>
+
+<main id="productRoot">
+  <p class="loading">Loading product...</p>
+</main>
+
+<footer>
+  Buraq IT Services &middot; WhatsApp: +92 300 0118219
+</footer>
+
+<script>
+/* ============================================================
+   This ONE file renders EVERY product. It reads which product to
+   show from the link's "?slug=" part, then looks it up in
+   ../products.json. There is nothing to create or edit here when
+   you add a new product — only products.json changes.
+
+   IMAGES: in products.json, set "image" to either:
+     - a full link (https://...) from any image host, or
+     - a path to a photo you uploaded into this repo's /images/
+       folder, written as: images/your-photo.jpg
+   Both work automatically from every page.
+   ============================================================ */
+const WHATSAPP_NUMBER = "923000118219";
+const WHATSAPP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.22 8.22 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24a8.2 8.2 0 0 1 8.24 8.24c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.15 0-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>';
+
+function formatPrice(n){ return n.toLocaleString('en-PK'); }
+
+// Resolve an image path whether it's a full URL or a repo-relative path
+// (this page lives one folder inside /products/, so relative repo paths need "../")
+function resolveImage(path){
+  if (!path) return "";
+  if (/^https?:\/\//i.test(path)) return path;
+  return "../" + path.replace(/^\/+/, "");
+}
+
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug');
+const root = document.getElementById('productRoot');
+
+if (!slug) {
+  root.innerHTML = '<p class="loading">No product specified — <a href="../index.html">back to catalog</a>.</p>';
+} else {
+  fetch('../products.json')
+    .then(res => res.json())
+    .then(products => {
+      const p = products.find(x => x.slug === slug);
+      if (!p) {
+        root.innerHTML = '<p class="loading">Product not found. It may have been removed — <a href="../index.html">back to catalog</a>.</p>';
+        return;
+      }
+      const galleryList = (p.images && p.images.length ? p.images : (p.image ? [p.image] : []))
+        .map(resolveImage)
+        .filter((v, i, arr) => v && arr.indexOf(v) === i); // dedupe + drop empties
+      const mainImg = galleryList[0] || "";
+      const mediaContent = mainImg
+        ? `<img id="mainProductImg" src="${mainImg}" alt="${p.name}">`
+        : `<span style="color:#b6bac2;font-size:13px;">No image yet</span>`;
+      const thumbsHtml = galleryList.length > 1
+        ? `<div class="gallery-thumbs">${galleryList.map((src, i) =>
+            `<img src="${src}" class="${i===0?'active':''}" onclick="document.getElementById('mainProductImg').src=this.src; this.parentElement.querySelectorAll('img').forEach(t=>t.classList.remove('active')); this.classList.add('active');">`
+          ).join('')}</div>`
+        : '';
+      const videoButton = p.video ? `<a class="video-link" href="${p.video}" target="_blank" rel="noopener">Watch video</a>` : '';
+      const headlineHtml = p.headline ? `<div class="headline">${p.headline}</div>` : '';
+      const discountPct = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+      const oldPriceHtml = discountPct ? `<span class="old-price">Rs ${formatPrice(p.oldPrice)}</span><span class="discount-badge">-${discountPct}%</span>` : '';
+      const highlightsHtml = (p.highlights && p.highlights.length)
+        ? `<ul class="highlights">${p.highlights.map(h => `<li>${h}</li>`).join('')}</ul>`
+        : '';
+      const lines = [
+        `Hi, I'm interested in: ${p.name}`,
+        `Price: PKR ${formatPrice(p.price)}`,
+        `Product ID: #${p.id}`
+      ];
+      const rawImg = (p.images && p.images[0]) || p.image;
+      if (rawImg) {
+        const absoluteImg = /^https?:\/\//i.test(rawImg)
+          ? rawImg
+          : (window.location.origin + window.location.pathname.replace(/\/products\/.*$/, '/') + rawImg);
+        lines.push(`Photo: ${absoluteImg}`);
+      }
+      const waText = encodeURIComponent(lines.join('\n'));
+
+      root.innerHTML = `
+        <div class="product-media">${mediaContent}</div>
+        ${thumbsHtml}
+        <div class="cat-label" style="margin-top:16px;">${p.category}</div>
+        <h1 class="product-title">${p.name}</h1>
+        ${headlineHtml}
+        <div class="price-row"><div class="price">Rs ${formatPrice(p.price)}</div>${oldPriceHtml}</div>
+        ${highlightsHtml}
+        <p class="description">${p.description}</p>
+        <div class="actions">
+          <a class="order-btn" href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}" target="_blank" rel="noopener">${WHATSAPP_ICON} Order on WhatsApp</a>
+          ${videoButton}
+        </div>
+        <a class="catalog-link" href="../index.html">&#8592; Back to full catalog</a>
+      `;
+      document.title = p.name + " — Buraq IT Services";
+    })
+    .catch(err => {
+      root.innerHTML = '<p class="loading">Could not load product data. Make sure products.json is uploaded at the site root.</p>';
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
